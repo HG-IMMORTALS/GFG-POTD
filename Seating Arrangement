@@ -1,0 +1,30 @@
+//User function Template for C++
+
+class Solution{
+    public:
+    bool is_possible_to_get_seats(int n, int m, vector<int>& seats){
+        if(n==0) 
+         return true;
+        if(m==1)
+        {
+            if(seats[0]==0&&n<=1) return true;
+            return false;
+        }
+        int count =0;
+        if(seats[0]==0&&seats[1]==0)
+        {
+            count++;
+            seats[0]=1;
+        }
+        for(int i=1; i<m-1; i++)
+        {
+            if(seats[i]==0 && seats[i+1]==0 && seats[i-1]==0){
+                seats[i]=1;
+                count++;
+            }
+        }
+        if(seats[m-1]==0&&seats[m-2]==0) count++;
+        if(count>=n) return true;
+        return false;
+    }
+};
