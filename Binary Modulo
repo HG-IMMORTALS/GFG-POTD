@@ -1,0 +1,18 @@
+//User function Template for C++
+
+class Solution{
+    public:
+        int modulo(string s,int m)
+        {
+           int sol=0;
+           int n=1;
+           for(int i=s.size()-1;i>=0;i--)
+           {
+               if(s[i]=='1') sol=(sol+n)%m;
+               n*=2;
+               n=n%m;
+           }
+            sol=sol%m;
+        return sol;  
+        }
+};
