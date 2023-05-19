@@ -1,0 +1,18 @@
+//User function Template for C++
+
+class Solution{
+public:
+    string stringMirror(string str){
+        int i;
+      for(i=1;i<str.size();i++)
+      {
+          if(str[i]>str[i-1]) break;
+          if(i==1 && str[i]==str[i-1]) break;
+      }
+      string t=str.substr(0,i);
+      string ans=t;
+      reverse(t.begin(),t.end());
+      ans+=t;
+      return ans;
+    }
+};
