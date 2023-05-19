@@ -1,0 +1,33 @@
+//User function Template for C++
+
+class Solution{
+public:
+    vector<long long> smallerSum(int n,vector<int> &arr)
+    {
+        int mx = *max_element(arr.begin(), arr.end());
+        unordered_map<int, vector<int>> mp;
+        
+        int freq[mx + 1] = {0};
+        // counting and mapping element to index
+        for (int i = 0; i < n; i++)
+        {
+            freq[arr[i]]++;
+            mp[arr[i]].push_back(i);
+        }
+        
+        long long sum = 0;
+        vector<long long> ans(n, 0);
+        
+        for (int i = 0; i <= mx; i++)
+        {
+            if (freq[i] == 0)
+                continue;
+            for (int j = 0; j < mp[i].size(); j++)
+            {
+                ans[mp[i][j]] = sum;
+            }
+            sum += (freq[i] * i);
+        }
+        return ans;
+    }
+};
