@@ -1,0 +1,18 @@
+class Solution {
+  public:
+    int equalSum(int N, vector<int> &A) {
+      int sum=0;
+      for(int i=0;i<N;i++)
+          sum+=A[i];
+      int currsum=sum;
+      int prevsum=0;
+      for(int i=0;i<N;i++)
+      {
+          currsum-=A[i];
+          if(prevsum==currsum)
+              return i+1;
+         prevsum+=A[i];
+      }
+        return -1;
+    }
+};
