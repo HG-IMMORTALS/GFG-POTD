@@ -1,0 +1,26 @@
+//User function Template for C++
+
+class Solution{
+public:
+    int totalCuts(int N,int K,vector<int> &A){
+       vector<int>left(N);
+       vector<int>right(N);
+       left[0]=A[0];
+       for(int i=1;i<N;i++)
+       {
+           left[i]=max(left[i-1],A[i]);
+       }
+       right[N-1]=A[N-1];
+       for(int i=N-2;i>=0;i--)
+       {
+           right[i]=min(right[i+1],A[i]);
+       }
+       int cuts=0;
+       for(int i=0;i<N-1;i++)
+       {
+           if(left[i]+right[i+1]>=K)
+           cuts++;
+       }
+       return cuts++;
+    }
+};
