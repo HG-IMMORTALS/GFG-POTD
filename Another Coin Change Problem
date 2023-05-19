@@ -1,0 +1,19 @@
+class Solution {
+  public:
+  int dp[101][1001];
+  bool solve(int ind, int target, int k, vector<int> &coins){
+        if(k == 0)return target == 0;
+        if(ind>=coins.size())return false;
+        if(dp[k][target]!=-1) return dp[k][target];
+        
+        int op1 = false;
+        if(target-coins[ind]>=0)op1 = solve(ind,target-coins[ind],k-1,coins);
+        int op2 = solve(ind+1,target,k,coins);
+        
+        return dp[k][target] = op1|op2;
+    }
+    bool makeChanges(int N, int K, int target, vector<int> &coins) {
+          memset(dp,-1,sizeof(dp));
+        return solve(0,target,K,coins);
+    }
+};
