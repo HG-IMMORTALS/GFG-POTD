@@ -1,0 +1,29 @@
+/* Structre of the Node of the Binary Tree is as follows
+struct Node
+{
+        int data;
+        struct Node *left, *right;
+};
+*/
+// your task is to complete this function
+// function should create a new binary tree
+// function should return the root node to the 
+// new binary tree formed
+class Solution{
+  public:
+    Node* Ans(int pre[],int l,int r)
+    {
+       int mid=l+(r-l)/2;
+       Node *t=new Node(pre[l]);
+       if(l<r)
+       {
+           t->left=Ans(pre,l+1,mid);
+           t->right=Ans(pre,mid+1,r);
+       }
+       return t;
+    }
+    Node* constructBinaryTree(int pre[], int preMirror[], int size)
+    {
+        return Ans(pre,0,size-1);
+    }
+};
